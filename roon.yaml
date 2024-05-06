@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: roon
+  labels:
+    app: roon
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: roon
+  template:
+    metadata:
+      labels:
+        app: roon
+    spec:
+      hostNetwork: true
+      containers:
+        - name: roon
+          image: docker.io/library/roon:latest
+          imagePullPolicy: "Never"
+          env:
+            - name: ROON_DATAROOT
+              value: /var/roon
+            - name: ROON_ID_DIR
+              value: /var/roon
+          volumeMounts:
+            - mountPath: /var/roon
+              name: config
+            - mountPath: /path/to/music
+              name: music
+      volumes:
+        - name: config
+          hostPath:
+            path: /path/to/roon
+            type: Directory
+        - name: music
+          hostPath:
+            path: /path/to/music
+            type: Directory
