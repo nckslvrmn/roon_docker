@@ -1,8 +1,8 @@
-FROM ubuntu:mantic
+FROM ubuntu:oracular
 
 RUN set -e && \
     apt-get update && \
-    apt-get install -qq -y ffmpeg libasound2 cifs-utils wget bzip2 && \
+    apt-get install -qq -y ffmpeg libasound2t64 cifs-utils wget bzip2 && \
     wget -q "https://download.roonlabs.net/builds/RoonServer_linuxx64.tar.bz2" -O /tmp/roon.tar.bz2 && \
     tar -xf /tmp/roon.tar.bz2 -C /opt && \
     /opt/RoonServer/check.sh && \
