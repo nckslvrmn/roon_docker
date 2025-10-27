@@ -1,4 +1,4 @@
-FROM ubuntu:oracular
+FROM ubuntu:questing
 
 RUN set -e && \
     apt-get update && \
